@@ -15,33 +15,37 @@
     --win-height: 30%;
   }
   body{margin:0;background:#f4efe3;display:flex;justify-content:center;padding:24px;}
-  .cc-player{position:relative;width:min(780px,96vw);aspect-ratio:1264/843;}
+
+  /* The crest frame is the BACKGROUND of the container. */
+  .cc-player{
+    position:relative;
+    width:min(780px,96vw);
+    aspect-ratio:1535/1024;                 /* matches the crest_frame.png */
+    background:url("crest_frame.png") center/contain no-repeat;
+  }
+  /* The video sits ON TOP of the frame, positioned inside the opening. */
   .cc-player video{
     position:absolute;
     left:var(--win-left); top:var(--win-top);
     width:var(--win-width); height:var(--win-height);
     object-fit:cover;
-    clip-path: inset(0 round 6px);   /* square, softly rounded. delete for hard corners */
-    background:#0d1526; z-index:1;
-  }
-  .cc-player .frame{
-    position:absolute;inset:0;width:100%;height:100%;
-    background:url("crest_frame.png") center/contain no-repeat;
-    z-index:2;pointer-events:none;
+    clip-path: inset(0 round 6px);          /* square, softly rounded */
+    background:#0d1526;
+    z-index:1;
   }
   .cc-player .tap{
-    position:absolute;left:var(--win-left);top:var(--win-top);
-    width:var(--win-width);height:var(--win-height);
-    z-index:3;cursor:pointer;background:transparent;border:0;
+    position:absolute;
+    left:var(--win-left); top:var(--win-top);
+    width:var(--win-width); height:var(--win-height);
+    z-index:2;cursor:pointer;background:transparent;border:0;
   }
-  .adjust .cc-player video{outline:3px solid magenta;}
+  .adjust .cc-player video{outline:4px solid magenta;}
 </style>
 </head>
 <body>
   <div class="cc-player">
     <video id="v" autoplay muted loop playsinline
            src="https://anthonysmith104-ux.github.io/CC-Ep-1/CapitalCritters_Ep1_Reel_Vertical_Intro.mp4"></video>
-    <div class="frame"></div>
     <button class="tap" id="tap" aria-label="Unmute"></button>
   </div>
 <script>
